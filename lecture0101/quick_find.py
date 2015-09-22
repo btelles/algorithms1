@@ -13,6 +13,8 @@ class QuickFindUF(default_network.DefaultNetwork):
   def union(self, int_a, int_b):
     self.network.setdefault(int_a, int_a)
     self.network.setdefault(int_b, int_b)
+    root_a = self.network[int_a]
+    root_b = self.network[int_b]
     for key, value in self.network.items():
-      if(value in (self.network[int_a], self.network[int_b])):
-        self.network[key] = int_a
+      if(value in (root_a, root_b)):
+        self.network[key] = root_a

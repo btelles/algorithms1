@@ -31,5 +31,14 @@ class QuickFindUFTest(unittest.TestCase):
     qf.union(2, 3)
     self.assertTrue(qf.connected(1, 3))
 
+  @parameterized.expand(classes)
+  def test_unioning_two_distant_things_in_reverse_order(self, class_to_test):
+    qf = class_to_test()
+    self.assertFalse(qf.connected(2, 4))
+    qf.union(1, 2)
+    qf.union(3, 4)
+    qf.union(4, 1)
+    self.assertTrue(qf.connected(2, 4))
+
 if(__name__ == '__main__'):
   unittest.main()
